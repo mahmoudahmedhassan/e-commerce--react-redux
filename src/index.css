@@ -20,7 +20,7 @@ select{
   outline:none;
 }
 
-
+ 
 /* ================ header style ==================== */
 .top-header{
   background: rgb(238,243,251);
@@ -50,20 +50,23 @@ select{
 }
 .the-cart span {
   position: absolute;
-  bottom: -7px;
+  bottom: -9px;
   background: rgb(237,8,140);
   border-radius: 50%;
-  height: 20px;
-  width: 20px;
+  height: 30px;
+  width: 30px;
   color: #fff;
-  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 
 }
 
 .the-cart-icon{
   margin-left: 10px;
   color: rgb(0,86,153);
-  font-size: 25px;
+  font-size: 40px;
 }
 .all-price{
   color: #000;
@@ -337,7 +340,7 @@ select{
 
  /*================== cart ===============*/
 
- @media (max-width: 576px) {  
+ @media (max-width: 767px) {  
 
  .cart{
   display: flex;
@@ -370,17 +373,23 @@ select{
   margin-top: 20px;
 }
 .select-count-cart {
+  /* width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row; */
   width: 100%;
   display: flex;
   justify-content: space-between;
-  flex-direction: row;
+  flex-direction: unset;
+}
+.Selected-Value{
+  margin-right: 0;
 }
 
 .delete-selected {
   font-size: 1.5rem;
   vertical-align: middle;
-  margin-top: 10px;
-}
+ }
 .selected-add {
   width: 100px;
 }

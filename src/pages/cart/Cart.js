@@ -1,13 +1,12 @@
 import {React,useState,useEffect} from "react";
 import { connect } from "react-redux";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { Container} from "react-bootstrap";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import {deleteProduct,adjustProduct} from '../../redux/actions/actions';
+import {deleteProduct} from '../../redux/actions/actions';
 import { motion } from "framer-motion";
-import { AnimatePresence } from "framer-motion";
+import Select from "../../Components/Select";
 
-function Cart({ cart,deleteProduct,adjustProduct }) {
-  const [selected,upDateSelectd]=useState('');
+function Cart({ cart,deleteProduct }) {
   const [cartCount,updateCartCount] =useState(0);
   const [subtotal,upDateSubtotal]=useState('');
   const [orderTotal,upDataOrderTotal] = useState('');
@@ -22,7 +21,7 @@ function Cart({ cart,deleteProduct,adjustProduct }) {
     ))
     updateCartCount(count);
     upDateSubtotal(total);
-    upDataOrderTotal(total+delivery)
+    upDataOrderTotal(total+delivery.toFixed(1))
 
   }, [cart,subtotal,cartCount,updateCartCount,upDateSubtotal])
  
@@ -32,20 +31,17 @@ function Cart({ cart,deleteProduct,adjustProduct }) {
         
       <motion.div className="item-content"
 
-        // initial={{ scale: 0 }}
-        // animate={{ rotate: 360, scale: 1 }
-        // transition={{
-        //   type:"spring",
-        //   stiffness: 260,
-        //   damping: 20,
-        // }}
-
-        exit={{
-          x: "-60vw",
-          scale: [1, 0],
-          transition: { duration: 0.5 },
-         }}
-        
+        initial={{ scale: 0 }}
+        animate={{
+           rotate: 360,
+            scale: 1,
+           transition:{
+          type:"spring",
+          stiffness: 260,
+          damping: 20,
+        }
+      }}
+ 
         >
           <div className="item-poster">
 
@@ -61,18 +57,33 @@ function Cart({ cart,deleteProduct,adjustProduct }) {
 
           <div className="select-count-cart">
             <RiDeleteBin6Line className="delete-selected" onClick={()=>deleteProduct(item.id)} />
-            <div className="selected">
+
+            {/* <div className="selected">
               <button onClick={ ()=> adjustProduct(item.id,selected)} className='selected-add'> Add</button>
-              <select onChange = {(e => upDateSelectd(e.target.value))} className="selected-value">
+              <select onChange = {(e => upDateSelectd(e.target.value))} className="selected-value"  >
+                {/* <option>{selected}</option> */}
+
+                {/* 
                 <option value="1">1</option>
+
                 <option value="2">2</option>
+
                 <option value="3">3</option>
+
                 <option value="4">4</option>
+
                 <option value="5">5</option>
+
                 <option value="6">6</option>
+
                 <option value="7">7</option>
               </select>
-            </div>
+            </div>  
+            */}
+           
+
+            <Select/>
+
           </div>
 
         </motion.div>
@@ -127,17 +138,17 @@ function Cart({ cart,deleteProduct,adjustProduct }) {
     </>
   );
 }
-const mapDispatchToState = (dispatch) => {
-  return {
-     deleteProduct:(id) => dispatch(deleteProduct(id)),
-     adjustProduct:(id,value) => dispatch(adjustProduct(id,value))
+// const mapDispatchToState = (dispatch) => {
+//   return {
+//      deleteProduct:(id) => dispatch(deleteProduct(id)),
+//     //  adjustProduct:(id,value) => dispatch(adjustProduct(id,value))
 
-  };
-};
+//   };
+// };
 
 const mapStateToProps = (state) => {
   return {
     cart: state.data.cart,
   };
 };
-export default connect(mapStateToProps,mapDispatchToState)(Cart);
+export default connect(mapStateToProps,{deleteProduct})(Cart);

@@ -7,18 +7,24 @@ import {connect} from "react-redux"
 function Header({cart}) {
   const [cartCount,updateCartCount] =useState(0);
   const [orderTotal,upDataOrderTotal] = useState('');
+
   useEffect(() => {
     let Count = 0;
     let total =0;
 
      cart.map((el) => {
       Count += el.quantity;
-      total +=el.quantity*el.price
-
+      // Count ++;
+      total += el.quantity * el.price;
 
      });
-     updateCartCount(Count);
-     upDataOrderTotal(total)
+
+     console.log(`zzzz ${cart}`)
+
+     updateCartCount( Count);
+    //  upDataOrderTotal(total.parseFloat()); 
+
+     upDataOrderTotal(total.toFixed(1));
   
   },[cart,cartCount,updateCartCount,upDataOrderTotal]);
   

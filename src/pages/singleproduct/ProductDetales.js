@@ -1,37 +1,46 @@
-import { React, useEffect,useState } from "react";
+import { React, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchProduct,addToCart } from "../../redux/actions/actions";
+import { fetchProduct, addToCart } from "../../redux/actions/actions";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import { motion } from "framer-motion";
+import Select from "../../Components/Select";
 
 function ProductDetales({ product, fetchProduct,addToCart }) {
- const [select,upDateSelect] = useState();
- console.log(select)
- const handleSelect=(e)=>{
-    upDateSelect(e.target.value)
- }
+
+  // const [select, upDateSelect] = useState(1);
+  // console.log(`hey :${select}`);
+  // const handleSelect = (e) => {
+  //   upDateSelect(e.target.value);
+  // };
 
   const { id, image, title, description, price, category } = product ?? {};
+  
   useEffect(() => {
     fetchProduct();
   }, []);
- 
-  return (
-    <motion.div className="ProductDetales"
-    initial={{ y: 1000 }}
-    animate={{ y: 0 }}
-    transition={{ type: "spring", duration: 1 }}
-    >
 
-      <Container>
+  return (
+ 
+    <Container>
+      <div className="ProductDetales">
         <Row>
           <Col md={12} lg={6}>
-            <div className='product-img'>
-              <Image src={image} alt={title} />
-            </div>
+            <motion.div
+              className="product-img"
+              initial={{ x: -1000 }}
+              animate={{ x: 0 }}
+              transition={{ type: "spring", duration: 1 }}
+            >
+             <Image src={image} alt={title} /> 
+             </motion.div>
           </Col>
           <Col md={12} lg={6}>
-            <div className="product-details">
+            <motion.div
+              className="product-details"
+              initial={{ y: 1000 }}
+              animate={{ y: 0 }}
+              transition={{ type: "spring", duration: 1 }}
+            >
               <div className="category"> {category}</div>
 
               <div className="title">
@@ -39,7 +48,8 @@ function ProductDetales({ product, fetchProduct,addToCart }) {
                 <p>EGP {price}</p>
               </div>
 
-              <div className="selected">
+               {/* <div className="selected">
+                
                 <select onChange={handleSelect} className="Selected-Value">
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -50,23 +60,28 @@ function ProductDetales({ product, fetchProduct,addToCart }) {
                   <option value="7">7</option>
                 </select>
 
-                <button onClick={() => addToCart(id,select)} className='selected-butn'>Add To Cart</button>
+                <button
+                  onClick={() => addToCart(id, select)}
+                  className="selected-butn">
+                  Add To Cart
+                </button>
 
-              </div>
-              
+              </div>   */}
+
+               <Select id={id} />
+               
               <div className="description">{description}</div>
-            </div>
+            </motion.div>
           </Col>
         </Row>
-      </Container>
-      
-    </motion.div>
+      </div>
+    </Container>
   );
 }
 const mapDispatchToState = (dispatch) => {
   return {
     fetchProduct: () => dispatch(fetchProduct()),
-    addToCart : (id,value) => dispatch(addToCart(id,value)),
+    // addToCart: (id, value) => dispatch(addToCart(id, value)),
   };
 };
 

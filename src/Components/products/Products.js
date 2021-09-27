@@ -10,21 +10,20 @@ import { motion } from "framer-motion";
 function Products({ products, fetchProducts,fetchProduct }) {
   useEffect(() => {
     fetchProducts();
-   }, []);
+   },[]);
  
   return (
+    
     <motion.div className="products"
     initial={{ y: 1000 }}
     animate={{ y: 0 }}
     transition={{ type: "spring", duration: 1 }}
-    >
-               
-          {products.length >0 ?
+    >   
+          {products.length > 0 ?
           
           <Container>
            <Row>
-             
-           { products.map((product) => (
+            { products.map((product) => (
              <Col xs={12} sm={6} md={4} lg={3}>
               <Link to={`product/${product.id}`} onClick={() =>fetchProduct(product.id)} >
                 <Card className='card'>
@@ -40,11 +39,11 @@ function Products({ products, fetchProducts,fetchProduct }) {
             </Col>
        )) }
          </Row>
-      </Container> : <p>loading</p>
+      </Container>
+       : <p>loading</p>
           
           }
 
-       
      </motion.div>
   );
 }

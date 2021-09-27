@@ -1,11 +1,11 @@
-import {SET_PRODUCTS,SET_PRODUCT,ADD_TO_CART,DELETE_PRODUCT,ADJUST_TO_CART} from '../actions/types'
+import {SET_PRODUCTS,SET_PRODUCT,ADD_TO_CART,DELETE_PRODUCT} from '../actions/types'
 
 const initialState = {
     products: [],
     product:[],
     cart:[],
-    loading:false
-  };
+    loading:false,
+   };
    const productsReducer =(state =initialState ,action)=>{
     
     switch (action.type) {
@@ -28,34 +28,48 @@ const initialState = {
               loading: false
           }
 
-         case ADD_TO_CART:
-          const item  = state.products.find(el => el.id === action.payload.id);
-          const inCart = state.cart.find(el => el.id == action.payload.id ? true : false);
+        //  case ADD_TO_CART:
 
-            return{
-              ...state,
-              cart :inCart ? 
-              state.cart.map(el => el.id == action.payload.id ? {...el, quantity:+action.payload.value +action.payload.value } : el):
-              [...state.cart,{...item,quantity:1}]
-            };
+        //   const item  = state.products.find(el => el.id === action.payload.id);
+        //   const inCart = state.cart.find(el => el.id === action.payload.id ? true : false);
 
-            case ADJUST_TO_CART:
-              return {
-                ...state,
-                cart: state.cart.map(el => el.id == action.payload.id ? {...el, quantity:+action.payload.value }: el)
+        //     return{
+        //       ...state,
+        //       cart :inCart ? 
+        //       state.cart.map(el => el.id === action.payload.id ? {...el, quantity: +action.payload.value } : el) :
+        //       [...state.cart, {...item, quantity: +action.payload.value}]
+ 
+        //     };
 
-              }
+            case ADD_TO_CART:
+              const item  = state.products.find(el => el.id === action.payload.id);
+              const inCart = state.cart.find(el => el.id === action.payload.id ? true : false);
+    
+                return{
+                  ...state,
+                  cart :inCart ? 
+                  state.cart.map(el => el.id === action.payload.id ? {...el, quantity:+action.payload.value} : el):
+                  [...state.cart,{...item,quantity: +action.payload.value}]
+                };
+
+ 
+            // case ADJUST_TO_CART:
+            //   return {
+            //     ...state,
+            //     cart: state.cart.map(el => el.id === action.payload.id ? {...el, quantity:+action.payload.value }: el)
+
+            //   }
 
             case DELETE_PRODUCT:
               return {
                 ...state,
                 cart:state.cart.filter(el => el.id !== action.payload)
               }
+              
+              default: 
+              return state
+        
       }
-
      
-      
-     
-      return state
   }
   export default productsReducer
