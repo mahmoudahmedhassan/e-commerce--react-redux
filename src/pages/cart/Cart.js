@@ -15,10 +15,10 @@ function Cart({ cart,deleteProduct }) {
     let count =0;
     let total =0;
     let delivery= 50;
-    cart.map(el=>(
+    cart.map(el=>((
       count +=el.quantity,
       total +=el.quantity*el.price
-    ))
+      )))
     updateCartCount(count);
     upDateSubtotal(total);
     upDataOrderTotal(total+delivery.toFixed(1))

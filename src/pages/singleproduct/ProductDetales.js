@@ -1,6 +1,6 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect  } from "react";
 import { connect } from "react-redux";
-import { fetchProduct, addToCart } from "../../redux/actions/actions";
+import { fetchProduct } from "../../redux/actions/actions";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import { motion } from "framer-motion";
 import Select from "../../Components/Select";
@@ -17,7 +17,7 @@ function ProductDetales({ product, fetchProduct,addToCart }) {
   
   useEffect(() => {
     fetchProduct();
-  }, []);
+  }, [fetchProduct]);
 
   return (
  
