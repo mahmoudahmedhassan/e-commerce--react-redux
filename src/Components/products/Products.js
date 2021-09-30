@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 function Products({ products, fetchProducts,fetchProduct }) {
   useEffect(() => {
     fetchProducts();
-   },[]);
+   },[fetchProducts]);
  
   return (
     

@@ -1,5 +1,5 @@
 
-import {SET_PRODUCTS,SET_PRODUCT,ADD_TO_CART,DELETE_PRODUCT,ADJUST_TO_CART,QUANTITY_SELECT,SET_QUANTITY,SELECT_FROM_CART} from './types'
+import {SET_PRODUCTS,SET_PRODUCT,ADD_TO_CART,DELETE_PRODUCT} from './types'
 import axios from 'axios';
  
 export const fetchProducts = () => dispatch => {

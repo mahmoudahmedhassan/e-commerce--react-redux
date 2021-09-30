@@ -12,12 +12,11 @@ function Header({cart}) {
     let Count = 0;
     let total =0;
 
-     cart.map((el) => {
-      Count += el.quantity;
+     cart.map((el) => ((
+        Count += el.quantity,
       // Count ++;
-      total += el.quantity * el.price;
-
-     });
+      total += el.quantity * el.price
+      )));
 
      console.log(`zzzz ${cart}`)
 
