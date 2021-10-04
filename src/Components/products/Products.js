@@ -24,7 +24,7 @@ function Products({ products, fetchProducts,fetchProduct }) {
           <Container>
            <Row>
             { products.map((product) => (
-             <Col xs={12} sm={6} md={4} lg={3}>
+             <Col xs={12} sm={6} md={4} lg={3} key={product.id}>
               <Link to={`product/${product.id}`} onClick={() =>fetchProduct(product.id)} >
                 <Card className='card'>
                     <div className='image-container'>

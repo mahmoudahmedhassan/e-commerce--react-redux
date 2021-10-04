@@ -14,9 +14,9 @@ function Navbar() {
     <div className="bottom-header">
       <Container>
         <div className="nav">
-         <Link to='/'> <div className="navbar-home active" onMouseLeave={handleHover}>Home</div></Link>
+         <Link to='/'> <div className={active? "navbar-home"  :"navbar-home active"} onClick={handleHover}>Home</div></Link>
          
-          <Link to='/cart'><div className="navbar-cart">Cart</div></Link>
+          <Link to='/cart'><div className={!active ? "navbar-cart" : "navbar-cart active" } onClick={handleHover} >Cart</div></Link>
         </div>
       </Container>
     </div>

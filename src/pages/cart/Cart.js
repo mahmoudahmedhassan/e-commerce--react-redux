@@ -20,8 +20,8 @@ function Cart({ cart,deleteProduct }) {
       total +=el.quantity*el.price
       )))
     updateCartCount(count);
-    upDateSubtotal(total);
-    upDataOrderTotal(total+delivery.toFixed(1))
+    upDateSubtotal(total.toFixed(1));
+    upDataOrderTotal((total+delivery).toFixed(1))
 
   }, [cart,subtotal,cartCount,updateCartCount,upDateSubtotal])
  
@@ -57,32 +57,8 @@ function Cart({ cart,deleteProduct }) {
 
           <div className="select-count-cart">
             <RiDeleteBin6Line className="delete-selected" onClick={()=>deleteProduct(item.id)} />
-
-            {/* <div className="selected">
-              <button onClick={ ()=> adjustProduct(item.id,selected)} className='selected-add'> Add</button>
-              <select onChange = {(e => upDateSelectd(e.target.value))} className="selected-value"  >
-                {/* <option>{selected}</option> */}
-
-                {/* 
-                <option value="1">1</option>
-
-                <option value="2">2</option>
-
-                <option value="3">3</option>
-
-                <option value="4">4</option>
-
-                <option value="5">5</option>
-
-                <option value="6">6</option>
-
-                <option value="7">7</option>
-              </select>
-            </div>  
-            */}
-           
-
-            <Select/>
+ 
+            <Select itemQuantity={item.quantity} id={item.id}/>
 
           </div>
 
@@ -138,14 +114,7 @@ function Cart({ cart,deleteProduct }) {
     </>
   );
 }
-// const mapDispatchToState = (dispatch) => {
-//   return {
-//      deleteProduct:(id) => dispatch(deleteProduct(id)),
-//     //  adjustProduct:(id,value) => dispatch(adjustProduct(id,value))
-
-//   };
-// };
-
+ 
 const mapStateToProps = (state) => {
   return {
     cart: state.data.cart,

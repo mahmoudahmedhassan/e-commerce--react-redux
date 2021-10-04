@@ -1,21 +1,24 @@
 import {React,useState} from 'react';
 import { connect } from "react-redux";
  
-import {  addToCart, } from "../redux/actions/actions";
+import {  addToCart } from "../redux/actions/actions";
 
-function Select({addToCart,id}) {
-
+function Select({addToCart,id ,itemQuantity}) {
+  
+    const [item,setItem]=useState(itemQuantity);
+    
     const [selected, upDateSelect] = useState(1);
 
      const handleSelect = (e) => {
-      upDateSelect(e.target.value);
-       };
-  
- 
+       let value = e.target.value;
+       upDateSelect(value);
+        setItem(value) ;
+
+        };
     return (
         <div className="selected">
 
-        <select onChange={handleSelect} className="Selected-Value"  >
+        <select onChange={handleSelect} className="Selected-Value" value={item} >
  
           <option value="1">1</option>
           <option value="2">2</option>
@@ -24,23 +27,20 @@ function Select({addToCart,id}) {
           <option value="5">5</option>
           <option value="6">6</option>
           <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
         </select>
 
         <button
           onClick={()=>addToCart( id ,selected )}
-
           className="selected-butn">
           Add To Cart
         </button>
       </div>
-             
+ 
      )
 }
-// const mapDispatchToState = (dispatch) => {
-//     return {
-//        addToCart: (id, value) => dispatch(addToCart(id, value)),
-//     };
-//   };
 
  export default connect(null, {addToCart})(Select);
  

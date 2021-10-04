@@ -5,13 +5,9 @@ import { Container, Row, Col, Image } from "react-bootstrap";
 import { motion } from "framer-motion";
 import Select from "../../Components/Select";
 
-function ProductDetales({ product, fetchProduct,addToCart }) {
+function ProductDetales({ product, fetchProduct }) {
 
-  // const [select, upDateSelect] = useState(1);
-  // console.log(`hey :${select}`);
-  // const handleSelect = (e) => {
-  //   upDateSelect(e.target.value);
-  // };
+ 
 
   const { id, image, title, description, price, category } = product ?? {};
   
@@ -48,27 +44,7 @@ function ProductDetales({ product, fetchProduct,addToCart }) {
                 <p>EGP {price}</p>
               </div>
 
-               {/* <div className="selected">
-                
-                <select onChange={handleSelect} className="Selected-Value">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                </select>
-
-                <button
-                  onClick={() => addToCart(id, select)}
-                  className="selected-butn">
-                  Add To Cart
-                </button>
-
-              </div>   */}
-
-               <Select id={id} />
+               <Select id={id} itemQuantity ={1}/>
                
               <div className="description">{description}</div>
             </motion.div>
@@ -81,8 +57,7 @@ function ProductDetales({ product, fetchProduct,addToCart }) {
 const mapDispatchToState = (dispatch) => {
   return {
     fetchProduct: () => dispatch(fetchProduct()),
-    // addToCart: (id, value) => dispatch(addToCart(id, value)),
-  };
+   };
 };
 
 const mapStateToProps = (state) => {

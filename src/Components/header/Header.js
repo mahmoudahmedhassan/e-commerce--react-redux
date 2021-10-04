@@ -18,8 +18,7 @@ function Header({cart}) {
       total += el.quantity * el.price
       )));
 
-     console.log(`zzzz ${cart}`)
-
+ 
      updateCartCount( Count);
     //  upDataOrderTotal(total.parseFloat()); 
 

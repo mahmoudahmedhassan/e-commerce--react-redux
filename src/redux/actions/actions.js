@@ -1,28 +1,39 @@
+import {
+  SET_PRODUCTS,
+  SET_PRODUCT,
+  ADD_TO_CART,
+  DELETE_PRODUCT,
+ } from "./types";
+import axios from "axios";
 
-import {SET_PRODUCTS,SET_PRODUCT,ADD_TO_CART,DELETE_PRODUCT} from './types'
-import axios from 'axios';
- 
-export const fetchProducts = () => dispatch => {
+export const fetchProducts = () => (dispatch) => {
+  const URL = "https://fakestoreapi.com/products";
 
-    const URL='https://fakestoreapi.com/products';
+  axios
+    .get(URL)
+    .then((res) =>
+      dispatch({
+        type: SET_PRODUCTS,
+        payload: res.data,
+      })
+    )
 
-    axios.get(URL).then(res=> dispatch ({
-     type:SET_PRODUCTS,
-     payload:res.data
-    }))
- 
-   .catch(err => console.log(err));    
-}
- 
-export const fetchProduct = id => dispatch =>{
-    const URL =`https://fakestoreapi.com/products/${id}`;
+    .catch((err) => console.log(err));
+};
 
-    axios.get(URL).then(res => dispatch ({
-        type:SET_PRODUCT,
-        payload:res.data
-    })).catch(err =>console.log(err));
+export const fetchProduct = (id) => (dispatch) => {
+  const URL = `https://fakestoreapi.com/products/${id}`;
 
- };
+  axios
+    .get(URL)
+    .then((res) =>
+      dispatch({
+        type: SET_PRODUCT,
+        payload: res.data,
+      })
+    )
+    .catch((err) => console.log(err));
+};
 //  export const addToCart = (itemID,value) =>{
 //      return{
 //          type:ADD_TO_CART,
@@ -33,24 +44,20 @@ export const fetchProduct = id => dispatch =>{
 //     }
 //  }
 
- export const addToCart = (itemID,value) => dispatch=>{
-    dispatch({
-        type:ADD_TO_CART,
-        payload:{
-       id:itemID,
-       value
-    }
-   })
+export const addToCart = (itemID, value) => (dispatch) => {
+  dispatch({
+    type: ADD_TO_CART,
+    payload: {
+      id: itemID,
+      value,},
+  });
 };
-
+ 
+export const deleteProduct = (itemID) => (dispatch) => {
+  dispatch({
+    type: DELETE_PRODUCT,
+    payload: itemID,
+  });
+};
  
  
- export const deleteProduct = (itemID)=> (dispatch)=>{
-     dispatch({
-         type:DELETE_PRODUCT,
-         payload:itemID
-     })
- };
-
- 
-
