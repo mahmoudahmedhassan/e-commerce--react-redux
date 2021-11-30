@@ -16,7 +16,7 @@ function Select({addToCart,id ,itemQuantity}) {
 
         };
     return (
-        <div className="selected">
+        <div className="selected" style={{display: 'flex'}}>
 
         <select onChange={handleSelect} className="Selected-Value" value={item} >
  

@@ -90,9 +90,9 @@ select{
 .navbar-cart, .navbar-home{
   padding: 10px;
  }
+
 .active{
   background:rgb(0,86,153);
-
  }
 
  /* =========== products ============== */

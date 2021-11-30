@@ -40,7 +40,7 @@ function Products({ products, fetchProducts,fetchProduct }) {
        )) }
          </Row>
       </Container>
-       : <p>loading</p>
+       : <p style={{textAlign:"center", fontSize:"30px"}}>Loading...</p>
           
           }
 

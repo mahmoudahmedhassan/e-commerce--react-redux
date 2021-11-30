@@ -6,9 +6,7 @@ import { motion } from "framer-motion";
 import Select from "../../Components/Select";
 
 function ProductDetales({ product, fetchProduct }) {
-
- 
-
+  
   const { id, image, title, description, price, category } = product ?? {};
   
   useEffect(() => {
